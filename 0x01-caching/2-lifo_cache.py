@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """A LIFOCACHE that inherits from
 BaseCaching and is a caching system:
@@ -26,7 +25,7 @@ class LIFOCache(BaseCaching):
             return
         if len(
                 self.cache_data) >= BaseCaching.MAX_ITEMS and key not in self.cache_data:
-            # Delete the last item in the dictionary
+           
             last_key, last_value = self.cache_data.popitem()
             print("DISCARD: {}".format(last_key))
         self.cache_data[key] = item
