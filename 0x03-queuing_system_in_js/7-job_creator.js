@@ -51,11 +51,10 @@ const jobs = [
 const queue = createQueue({name: 'push_notification_code'});
 
 for (const job of jobs) {
-    const notificationJob = queue.create('push_notification_code_2', job)
-        .on('complete', () => {
-            console.log(`Notification job ${notificationJob.id} completed`);
-        });
-    
+  const notificationJob = queue.create('push_notification_code_2', job)
+    .on('complete', () => {
+      console.log(`Notification job ${notificationJob.id} completed`);
+    })
     .on('failed', (err) => {
       console.log(`Notification job ${notificationJob.id} failed: ${err}`);
     })
