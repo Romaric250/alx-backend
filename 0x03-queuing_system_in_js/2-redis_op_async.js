@@ -8,6 +8,8 @@ client.on("connect", () => {
     console.log(`Redis client not connected to the server: ${error.message}`);
 });
 
+const set = promisify(client.set).bind(client);
+
 const SetNewSchool = (schoolName, value) => {
     client.set(schoolName, value, (error, resp) => {
         if (error) {
@@ -18,14 +20,14 @@ const SetNewSchool = (schoolName, value) => {
     });
 }
 
-const displaySchoolValue = (schoolName) => {
-    client.get(schoolName, (error, resp) => {
+const displaySchoolValue = async (schoolName) => {
+    const response = await client.get(schoolName).catch((error) =>{
         if (error) {
             console.log(error);
             throw error;
         }
-        console.log(resp);
     });
+    console.log(response);
 }
 
 displaySchoolValue("Holberton");
